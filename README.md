@@ -1,1 +1,1 @@
-# -jsPsychGenerationTypingPhDExp2a
+# jsPsychGenerationTypingPhDExp2a
