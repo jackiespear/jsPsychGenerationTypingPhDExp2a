@@ -162,17 +162,30 @@ var study_words_mixed = produce_words.concat(read_words);
 
 for (let i = 0; i < study_words_mixed.length; i++) {
   const { word1, word2, ...rest } = study_words_mixed[i];
-  const newObject = Object.assign({ word1, word_2: word2, ...rest });
+  const newObject = Object.assign({ word1, word_2: word2, ...rest }); //renaming word2 to word_2
+  study_words_mixed[i] = newObject;
+}
+
+for (let i = 0; i < study_words_mixed.length; i++) {
+  const { word1, word_2, ...rest } = study_words_mixed[i];
+  const newObject = Object.assign({ word1, word2: word_2, ...rest }); //renaming back to word2. this fixes the issue
   study_words_mixed[i] = newObject;
 }
 
 
 
-for (var i = 0; i < study_words_mixed.length; i++) {
+/* for (var i = 0; i < study_words_mixed.length; i++) {
   if (study_words_mixed[i].category === "produce") {
     study_words_mixed[i].word_2 = study_words_mixed[i].word_2.replace(/.{3}$/, "_ _ _?");
   }
+} */
+
+for (var i = 0; i < study_words_mixed.length; i++) {
+  if (study_words_mixed[i].category === "produce") {
+    study_words_mixed[i].word2 = study_words_mixed[i].word2.replace(/.{3}$/, "_ _ _?");
+  }
 }
+
 
 console.table(study_words_mixed);
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
