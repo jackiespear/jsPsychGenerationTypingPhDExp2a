@@ -10,7 +10,9 @@
         <script src="jspsych-6.3.1/plugins/jspsych-external-html.js"></script>
         <script src="jspsych-6.3.1/plugins/jspsych-survey-text.js"></script>
         <script src="jspsych-6.3.1/plugins/jspsych-survey-html-form.js"></script>
+        <script src="jspsych-6.3.1/plugins/jspsych-survey-html-form-orig.js"></script>
         <script src="jspsych-6.3.1/plugins/jspsych-html-button-response.js"></script>
+        <script src="jspsych-6.3.1/plugins/jspsych-html-button-response-orig.js"></script>
         <script src="jspsych-6.3.1/plugins/jspsych-fullscreen.js"></script>
         <script src='stimuli/exp_text.js'></script>
         <script src='stimuli/study_words_consist_practice.js'></script>
@@ -594,21 +596,21 @@ var test_phase = {
 };
 
 var question_trial_sex = {
-  type: 'html-button-response',
+  type: 'html-button-response-orig',
   stimulus: '<p style="font-size:28px;">What is your sex assigned at birth?</p>',
   choices: ['Male', 'Female', 'Other'],
   prompt: '<p>Please click one</p>'
 };
 
 var question_trial_gender = {
-  type: 'html-button-response',
+  type: 'html-button-response-orig',
   stimulus: '<p style="font-size:28px;">What is your gender?</p>',
   choices: ['Male', 'Female', 'Non-binary', 'Other', 'Prefer not to say'],
   prompt: '<p>Please click one</p>'
 };
 
 var question_trial_age = {
-  type: 'survey-html-form',
+  type: 'survey-html-form-orig',
   button_label: 'Click here to continue',
   trial_duration: 3000,
   preamble: '<p>What is is your age in years?</p>',
@@ -617,7 +619,7 @@ var question_trial_age = {
 };
 
 var question_trial_english = {
-  type: 'html-button-response',
+  type: 'html-button-response-orig',
   stimulus: '<p style="font-size:28px;">Is English your first language?</p>',
   choices: ['Yes', 'No'],
   prompt: '<p>Please click one</p>'
@@ -708,9 +710,9 @@ timeline.push(study_procedure); // this is new
 jsPsych.init({
     timeline: timeline,
     on_finish: function() {
-     window.location.href = "https://umanitobapsych.sona-systems.com/webstudy_credit.aspx?experiment_id=1303&credit_token=a035fd3a62b541dcae118ab791f90307&survey_code="+SONA_ID; //changed
+     //window.location.href = "https://umanitobapsych.sona-systems.com/webstudy_credit.aspx?experiment_id=1303&credit_token=a035fd3a62b541dcae118ab791f90307&survey_code="+SONA_ID; //changed
       // display data at end:
-      //jsPsych.data.displayData(); //commented out for final version
+      jsPsych.data.displayData(); //commented out for final version
     }
 });
 
