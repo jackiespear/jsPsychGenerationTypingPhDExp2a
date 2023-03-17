@@ -10,9 +10,6 @@
         <script src="jspsych-6.3.1/plugins/jspsych-external-html.js"></script>
         <script src="jspsych-6.3.1/plugins/jspsych-survey-text.js"></script>
         <script src="jspsych-6.3.1/plugins/jspsych-survey-html-form.js"></script>
-        <script src="jspsych-6.3.1/plugins/jspsych-survey-html-form-orig.js"></script>
-        <script src="jspsych-6.3.1/plugins/jspsych-html-button-response.js"></script>
-        <script src="jspsych-6.3.1/plugins/jspsych-html-button-response-orig.js"></script>
         <script src="jspsych-6.3.1/plugins/jspsych-fullscreen.js"></script>
         <script src='stimuli/exp_text.js'></script>
         <script src='stimuli/study_words_consist_practice.js'></script>
@@ -543,7 +540,7 @@ var study_instructions123 = {
           `
         return html;
     },
-    html:  '<p> <input type="text" onkeydown="return (event.keycode!=13);" id="test-resp-box" name="response" size="10" style=color:black;/></p>', //color being white will not mirror typed word to the screen
+    html:  '<p> <input type="text" onkeydown="return (event.keycode!=13);" id="test-resp-box" name="response" size="10" style=color:white;/></p>', //color being white will not mirror typed word to the screen
     post_trial_gap: 500, // changing this to 3 seconds so that each trail is equal (e.g. produce vs. read),
     trial_duration: 3000, //change back to 3000
     data: {phase:"study", category: jsPsych.timelineVariable("category"), type: jsPsych.timelineVariable("type"), word1: jsPsych.timelineVariable("word1"), word2: jsPsych.timelineVariable("word2")},
@@ -593,46 +590,6 @@ var test_phase = {
     ],
     randomize_order: true,
     timeline_variables: stimuli_test,
-};
-
-var question_trial_sex = {
-  type: 'html-button-response-orig',
-  stimulus: '<p style="font-size:28px;">What is your sex assigned at birth?</p>',
-  choices: ['Male', 'Female', 'Other'],
-  prompt: '<p>Please click one</p>'
-};
-
-var question_trial_gender = {
-  type: 'html-button-response-orig',
-  stimulus: '<p style="font-size:28px;">What is your gender?</p>',
-  choices: ['Male', 'Female', 'Non-binary', 'Other', 'Prefer not to say'],
-  prompt: '<p>Please click one</p>'
-};
-
-var question_trial_age = {
-  type: 'survey-html-form-orig',
-  button_label: 'Click here to continue',
-  trial_duration: 3000,
-  preamble: '<p>What is is your age in years?</p>',
-  html: '<p><input type="text" onkeydown="return (event.keycode!=13);" id="test-resp-box2" name="age_response" size="10" style=color:black;/></p>',
-  autofocus: 'test-resp-box2',
-};
-
-var question_trial_english = {
-  type: 'html-button-response-orig',
-  stimulus: '<p style="font-size:28px;">Is English your first language?</p>',
-  choices: ['Yes', 'No'],
-  prompt: '<p>Please click one</p>'
-};
-
-var survey = {
-  data: {"phase": "Survey"},
-  timeline: [
-    question_trial_sex,
-    question_trial_gender,
-    question_trial_age,
-    question_trial_english,
-  ]
 };
 
 // set up debrief block
@@ -694,13 +651,10 @@ var timeline = [];
 //timeline.push(no_consent);
 //timeline.push(welcome);
 //timeline.push(enter_full_screen);
-timeline.push(instructions);
-//timeline.push(question_trial_age);
-timeline.push(survey);
+//timeline.push(instructions);
 //timeline.push(study_procedure_practice);
 timeline.push(practice_test_instructions);
 timeline.push(study_procedure); // this is new
-
 //timeline.push(test_instructions);
 //timeline.push(test_phase);
 //timeline.push(exit_full_screen);
@@ -710,9 +664,9 @@ timeline.push(study_procedure); // this is new
 jsPsych.init({
     timeline: timeline,
     on_finish: function() {
-     //window.location.href = "https://umanitobapsych.sona-systems.com/webstudy_credit.aspx?experiment_id=1303&credit_token=a035fd3a62b541dcae118ab791f90307&survey_code="+SONA_ID; //changed
+     window.location.href = "https://umanitobapsych.sona-systems.com/webstudy_credit.aspx?experiment_id=1303&credit_token=a035fd3a62b541dcae118ab791f90307&survey_code="+SONA_ID; //changed
       // display data at end:
-      jsPsych.data.displayData(); //commented out for final version
+      //jsPsych.data.displayData(); //commented out for final version
     }
 });
 
